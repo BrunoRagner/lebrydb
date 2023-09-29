@@ -10,6 +10,8 @@
       
       
       
+        <link rel="next" href="installation/">
+      
       
       <link rel="icon" href="assets/images/favicon.png">
       <meta name="generator" content="mkdocs-1.5.3, mkdocs-material-9.4.2">
@@ -315,13 +317,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#exemplo-de-uso" class="md-nav__link">
-    Exemplo de Uso
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -336,30 +331,11 @@
   
   
     <li class="md-nav__item">
-      <a href="installation.md" class="md-nav__link">
+      <a href="installation/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Guia de Instalação
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-    
-      
-      
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="usage.md" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    Guia de Uso
+    Guia de Instalação LebryDB
   </span>
   
 
@@ -379,6 +355,82 @@
   
   <span class="md-ellipsis">
     Sobre
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="insert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Insert
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="consulta/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Consulta
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="update/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Update
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="remove/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Remove
   </span>
   
 
@@ -461,13 +513,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#exemplo-de-uso" class="md-nav__link">
-    Exemplo de Uso
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -515,8 +560,55 @@
 <li><code>collection</code> (str): O nome da coleção a ser atualizada.</li>
 <li><code>query</code> (dict): Um dicionário que define os critérios para selecionar os documentos a serem removidos.</li>
 </ul>
+<h1 id="guia-de-uso-do-lebrydb">Guia de Uso do LebryDB</h1>
+<p>O LebryDB é uma biblioteca Python leve e simples para armazenamento de dados. Este guia fornecerá uma visão geral das principais funcionalidades e como usá-lo em seus projetos.</p>
+<h2 id="instalacao">Instalação</h2>
+<p>Para começar a usar o LebryDB, você pode instalá-lo via pip:</p>
+<p><div class="highlight"><pre><span></span><code>pip<span class="w"> </span>install<span class="w"> </span>lebrydb
+</code></pre></div>
+Criando uma Instância
+Após a instalação, você pode criar uma instância do LebryDB em seu código Python:</p>
+<p><div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">lebrydb</span> <span class="kn">import</span> <span class="n">LebryDB</span>
+
+<span class="c1"># Crie uma instância do LebryDB</span>
+<span class="n">db</span> <span class="o">=</span> <span class="n">LebryDB</span><span class="p">()</span>
+</code></pre></div>
+Inserindo Documentos
+Para inserir documentos em coleções, você pode usar o método insert. Se a coleção não existir, ela será criada automaticamente:</p>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># Insira um documento em uma coleção chamada &#39;users&#39;</span>
+<span class="n">db</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Alice&#39;</span><span class="p">,</span> <span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">30</span><span class="p">})</span>
+</code></pre></div>
+Consultando Documentos
+Você pode consultar documentos em uma coleção com base em critérios específicos usando o método find:</p>
+<p><div class="highlight"><pre><span></span><code><span class="c1"># Consulta documentos em uma coleção</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">db</span><span class="o">.</span><span class="n">find</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Alice&#39;</span><span class="p">})</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">results</span><span class="p">)</span>  <span class="c1"># [{&#39;name&#39;: &#39;Alice&#39;, &#39;age&#39;: 30}]</span>
+</code></pre></div>
+Atualizando Documentos
+Para atualizar documentos em uma coleção que correspondem a uma consulta, use o método update:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># Atualize documentos em uma coleção</span>
+<span class="n">db</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Alice&#39;</span><span class="p">},</span> <span class="p">{</span><span class="s1">&#39;age&#39;</span><span class="p">:</span> <span class="mi">31</span><span class="p">})</span>
+<span class="err">´´´</span>
+<span class="n">Removendo</span> <span class="n">Documentos</span>
+<span class="n">Para</span> <span class="n">remover</span> <span class="n">documentos</span> <span class="n">em</span> <span class="n">uma</span> <span class="n">coleção</span> <span class="n">que</span> <span class="n">correspondem</span> <span class="n">a</span> <span class="n">uma</span> <span class="n">consulta</span><span class="p">,</span> <span class="n">use</span> <span class="n">o</span> <span class="n">método</span> <span class="n">remove</span><span class="p">:</span>
+
+<span class="c1"># Remove documentos em uma coleção</span>
+<span class="n">db</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="s1">&#39;users&#39;</span><span class="p">,</span> <span class="p">{</span><span class="s1">&#39;name&#39;</span><span class="p">:</span> <span class="s1">&#39;Alice&#39;</span><span class="p">})</span>
+</code></pre></div>
+<p>Personalizando a Inicialização
+Você pode personalizar a inicialização do banco de dados com dados iniciais fornecidos:</p>
+<h1 id="dados-iniciais-para-o-banco-de-dados">Dados iniciais para o banco de dados</h1>
+<p>initial_data = {
+    'users': [{'name': 'John', 'age': 25}, {'name': 'Alice', 'age': 30}]
+}</p>
+<h1 id="crie-uma-instancia-do-lebrydb-com-dados-iniciais">Crie uma instância do LebryDB com dados iniciais</h1>
+<p>db_with_data = LebryDB(initial_data)
+Conclusão
+O LebryDB é uma ferramenta flexível e fácil de usar para armazenar e recuperar dados em seus projetos Python. Com este guia, você deve estar pronto para começar a aproveitar ao máximo esta biblioteca.</p>
+<p>Lembre-se de explorar a documentação oficial para obter informações mais detalhadas e exemplos adicionais.</p>
 <h2 id="exemplo-de-uso">Exemplo de Uso</h2>
-<div class="highlight"><pre><span></span><code><span class="c1"># Cria uma instância do LebryDB</span>
+<div class="highlight"><pre><span></span><code><span class="n">Inserir</span> <span class="n">um</span> <span class="n">documento</span>
+<span class="c1"># Cria uma instância do LebryDB</span>
 <span class="n">db</span> <span class="o">=</span> <span class="n">LebryDB</span><span class="p">()</span>
 
 <span class="c1"># Insere um documento em uma coleção</span>
